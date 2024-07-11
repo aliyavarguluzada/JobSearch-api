@@ -1,11 +1,6 @@
-﻿using JobSearch.Application.CQRS.Company.Command;
-using JobSearch.Application.CQRS.Vacancies.Command;
+﻿using JobSearch.Application.CQRS.Category.Command;
+using JobSearch.Application.CQRS.Company.Command;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JobSearch.Application
 {
@@ -14,6 +9,7 @@ namespace JobSearch.Application
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCompanyCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommandHandler).Assembly));
         }
     }
 }

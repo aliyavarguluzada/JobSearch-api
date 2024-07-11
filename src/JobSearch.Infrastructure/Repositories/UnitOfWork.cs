@@ -1,4 +1,5 @@
 ﻿using JobSearch.Application.Repositories;
+using JobSearch.Application.Repositories.Category;
 using JobSearch.Application.Repositories.Company;
 using JobSearch.Infrastructure.Data;
 
@@ -12,12 +13,13 @@ namespace JobSearch.Infrastructure.Repositories
         {
             _context = context;
             Companies = new CompanyRepository(_context);
+            Categories = new CategoryRepository(_context);
 
         }
 
         public ICompanyRepository Companies { get; private set; }
 
-
+        public ICategoryRepository Categories { get; private set; }
 
         public int Complete() => _context.SaveChanges();
 
