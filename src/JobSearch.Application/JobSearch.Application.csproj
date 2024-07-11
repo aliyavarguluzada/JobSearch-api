@@ -7,8 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="CQRS\" />
+    <Folder Include="CQRS\Company\Query\" />
+    <Folder Include="CQRS\Vacancies\Query\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JobSearch.Domain\JobSearch.Domain.csproj" />
+    <ProjectReference Include="..\JobSearch.Models\JobSearch.Models.csproj" />
   </ItemGroup>
 
 </Project>

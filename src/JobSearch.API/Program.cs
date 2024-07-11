@@ -1,5 +1,7 @@
+using JobSearch.Application;
+using JobSearch.Application.Repositories;
 using JobSearch.Infrastructure;
-using JobSearch.Infrastructure.Data;
+using JobSearch.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
