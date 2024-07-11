@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2D5882E3-C6AF-4D71-BD57-75B3E1021542}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2238E99B-59F7-4864-8BB4-B766EEEEFA5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AAE0DCAB-3220-4B54-BAFC-65CB2F6E42B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearch.API", "src\JobSearch.API\JobSearch.API.csproj", "{766BEF2A-F1B8-4BBA-BA37-3B06CC18DF24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearch.Application", "src\JobSearch.Application\JobSearch.Application.csproj", "{7384EADB-8D49-496D-AEB8-8F2B4CB61F5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearch.Infrastructure", "src\JobSearch.Infrastructure\JobSearch.Infrastructure.csproj", "{8386E028-DE35-452C-874D-F37215F94791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearch.Domain", "src\JobSearch.Domain\JobSearch.Domain.csproj", "{5620C5EE-70FC-4C84-9FEA-5EF318BF6428}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearch.Models", "src\JobSearch.Models\JobSearch.Models.csproj", "{7898FBDD-C12B-4CA9-901A-4F0FDE0EF000}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{766BEF2A-F1B8-4BBA-BA37-3B06CC18DF24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766BEF2A-F1B8-4BBA-BA37-3B06CC18DF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766BEF2A-F1B8-4BBA-BA37-3B06CC18DF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766BEF2A-F1B8-4BBA-BA37-3B06CC18DF24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7384EADB-8D49-496D-AEB8-8F2B4CB61F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7384EADB-8D49-496D-AEB8-8F2B4CB61F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7384EADB-8D49-496D-AEB8-8F2B4CB61F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7384EADB-8D49-496D-AEB8-8F2B4CB61F5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8386E028-DE35-452C-874D-F37215F94791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8386E028-DE35-452C-874D-F37215F94791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8386E028-DE35-452C-874D-F37215F94791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8386E028-DE35-452C-874D-F37215F94791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5620C5EE-70FC-4C84-9FEA-5EF318BF6428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5620C5EE-70FC-4C84-9FEA-5EF318BF6428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5620C5EE-70FC-4C84-9FEA-5EF318BF6428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5620C5EE-70FC-4C84-9FEA-5EF318BF6428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7898FBDD-C12B-4CA9-901A-4F0FDE0EF000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7898FBDD-C12B-4CA9-901A-4F0FDE0EF000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7898FBDD-C12B-4CA9-901A-4F0FDE0EF000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7898FBDD-C12B-4CA9-901A-4F0FDE0EF000}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{766BEF2A-F1B8-4BBA-BA37-3B06CC18DF24} = {2D5882E3-C6AF-4D71-BD57-75B3E1021542}
+		{7384EADB-8D49-496D-AEB8-8F2B4CB61F5A} = {2D5882E3-C6AF-4D71-BD57-75B3E1021542}
+		{8386E028-DE35-452C-874D-F37215F94791} = {2D5882E3-C6AF-4D71-BD57-75B3E1021542}
+		{5620C5EE-70FC-4C84-9FEA-5EF318BF6428} = {2D5882E3-C6AF-4D71-BD57-75B3E1021542}
+		{7898FBDD-C12B-4CA9-901A-4F0FDE0EF000} = {2D5882E3-C6AF-4D71-BD57-75B3E1021542}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6E0BFCE-4CD8-4DC7-BD5F-EF16E55BAE53}
+	EndGlobalSection
+EndGlobal
