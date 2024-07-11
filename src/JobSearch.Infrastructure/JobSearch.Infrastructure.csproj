@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\JobSearch.Application\JobSearch.Application.csproj" />
     <ProjectReference Include="..\JobSearch.Domain\JobSearch.Domain.csproj" />
   </ItemGroup>

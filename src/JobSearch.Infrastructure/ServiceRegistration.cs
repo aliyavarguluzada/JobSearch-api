@@ -1,4 +1,6 @@
-﻿using JobSearch.Infrastructure.Data;
+﻿using JobSearch.Application.Interfaces;
+using JobSearch.Infrastructure.Data;
+using JobSearch.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,7 @@ namespace JobSearch.Infrastructure
 
             builder.Build();
 
+            services.AddScoped<ICompanyService, CompanyService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration["Database:Connection"]));

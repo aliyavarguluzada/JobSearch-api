@@ -10,6 +10,6 @@ namespace JobSearch.API.Controllers.v1
     public class CompanyController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateCompanyResponse>> Add([FromBody] CreateCompanyCommand command) => await Mediator.Send(command);
+        public async Task<ApiResult<CreateCompanyResponse>> Add([FromBody] CompanyRequest request) => await Mediator.Send(new CreateCompanyCommand(request));
     }
 }
