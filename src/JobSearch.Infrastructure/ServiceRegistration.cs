@@ -23,6 +23,8 @@ namespace JobSearch.Infrastructure
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ISeniorityService, SeniorityService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IJobTypeService, JobTypeService>();
 
 
             services.AddDbContext<ApplicationDbContext>(options =>

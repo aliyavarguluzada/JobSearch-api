@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobSearch.Infrastructure.Repositories
+namespace JobSearch.Infrastructure.Repositories.Category
 {
-    public class CategoryRepository : Repository<JobSearch.Domain.Entities.Category>, ICategoryRepository
+    public class CategoryRepository : Repository<Domain.Entities.Category>, ICategoryRepository
     {
         public CategoryRepository(ApplicationDbContext context) : base(context)
         {

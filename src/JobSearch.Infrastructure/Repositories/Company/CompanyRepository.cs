@@ -1,9 +1,9 @@
 ﻿using JobSearch.Application.Repositories.Company;
 using JobSearch.Infrastructure.Data;
 
-namespace JobSearch.Infrastructure.Repositories
+namespace JobSearch.Infrastructure.Repositories.Company
 {
-    public class CompanyRepository : Repository<JobSearch.Domain.Entities.Company>, ICompanyRepository
+    public class CompanyRepository : Repository<Domain.Entities.Company>, ICompanyRepository
     {
         public CompanyRepository(ApplicationDbContext context) : base(context)
         {
