@@ -16,22 +16,38 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateCompanyResponse>> Add(CompanyRequest request)
         {
-            var company = new JobSearch.Domain.Entities.Company()
+            try
             {
-                Name = request.Name,
-                Email = request.Email,
-                About = request.About
-            };
-            var response = new CreateCompanyResponse()
+                if (string.IsNullOrEmpty(request.Name)
+                    ||
+                    string.IsNullOrEmpty(request.Email)
+                    ||
+                    string.IsNullOrEmpty(request.About))
+                    return ApiResult<CreateCompanyResponse>.Error();
+
+
+                var company = new JobSearch.Domain.Entities.Company()
+                {
+                    Name = request.Name,
+                    Email = request.Email,
+                    About = request.About
+                };
+                var response = new CreateCompanyResponse()
+                {
+                    Email = company.Email,
+                    Name = company.Name,
+                    About = company.About
+                };
+
+                _unitOfWork.Companies.Add(company);
+
+                return ApiResult<CreateCompanyResponse>.Ok(response);
+            }
+            catch (Exception)
             {
-                Email = company.Email,
-                Name = company.Name,
-                About = company.About
-            };
-
-            _unitOfWork.Companies.Add(company);
-
-            return ApiResult<CreateCompanyResponse>.Ok(response);
+                await _unitOfWork.DisposeAsync();
+                return ApiResult<CreateCompanyResponse>.Error();
+            }
         }
     }
 }

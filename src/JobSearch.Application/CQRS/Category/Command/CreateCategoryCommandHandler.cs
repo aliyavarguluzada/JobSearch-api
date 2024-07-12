@@ -1,4 +1,4 @@
-﻿using JobSearch.Application.Repositories;
+﻿using JobSearch.Application.Interfaces;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Category;
 using MediatR;
@@ -7,22 +7,14 @@ namespace JobSearch.Application.CQRS.Category.Command
 {
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, ApiResult<CreateCategoryResponse>>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICategoryService _categoryService;
 
-        public CreateCategoryCommandHandler(IUnitOfWork unitOfWork)
+        public CreateCategoryCommandHandler(ICategoryService categoryService)
         {
-            _unitOfWork = unitOfWork;
+            _categoryService = categoryService;
         }
 
         public async Task<ApiResult<CreateCategoryResponse>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
-        {
-            var category = new JobSearch.Domain.Entities.Category() { Name = request.Name };
-
-            var response = new CreateCategoryResponse() { Name = request.Name };
-
-            _unitOfWork.Categories.Add(category);
-
-            return ApiResult<CreateCategoryResponse>.Ok(response);
-        }
+        => await _categoryService.Add(request.CategoryRequest);
     }
 }

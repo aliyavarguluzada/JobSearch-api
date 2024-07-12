@@ -1,5 +1,6 @@
 ﻿using JobSearch.Application.Repositories.Category;
 using JobSearch.Application.Repositories.Company;
+using JobSearch.Application.Repositories.Seniority;
 
 namespace JobSearch.Application.Repositories
 {
@@ -8,8 +9,9 @@ namespace JobSearch.Application.Repositories
     {
         ICompanyRepository Companies { get; }
         ICategoryRepository Categories { get; }
-
-        int Complete();
+        ISeniorityRepository Seniorities { get; }
+        Task DisposeAsync();
+        Task Complete();
     }
 
 }

@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="CQRS\Category\Query\" />
     <Folder Include="CQRS\Company\Query\" />
+    <Folder Include="CQRS\Seniority\Query\" />
     <Folder Include="CQRS\Vacancies\Query\" />
   </ItemGroup>
 

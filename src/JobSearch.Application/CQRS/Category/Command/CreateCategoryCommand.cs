@@ -6,6 +6,10 @@ namespace JobSearch.Application.CQRS.Category.Command
 {
     public class CreateCategoryCommand : IRequest<ApiResult<CreateCategoryResponse>>
     {
-        public string Name { get; set; }
+        public CreateCategoryCommand(CategoryRequest request)
+        {
+            CategoryRequest = request;
+        }
+        public CategoryRequest CategoryRequest { get; set; }
     }
 }
