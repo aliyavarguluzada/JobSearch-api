@@ -24,7 +24,9 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateJobTypeResponse() { Name = jobType.Name };
 
-                _unitOfWork.JobTypes.Add(jobType);
+                await _unitOfWork.JobTypes.Table.AddAsync(jobType);
+                await _unitOfWork.Categories.Complete();
+
 
                 return ApiResult<CreateJobTypeResponse>.Ok(response);
             }

@@ -1,4 +1,4 @@
-﻿using JobSearch.Application.CQRS.City;
+﻿using JobSearch.Application.Features.City.Command;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.City;
 using Microsoft.AspNetCore.Mvc;

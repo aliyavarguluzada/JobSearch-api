@@ -26,7 +26,9 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateCityResponse() { Name = city.Name };
 
-                _unitOfWork.Cities.Add(city);
+                await _unitOfWork.Cities.Table.AddAsync(city);
+                await _unitOfWork.Categories.Complete();
+
 
                 return ApiResult<CreateCityResponse>.Ok(response);
             }

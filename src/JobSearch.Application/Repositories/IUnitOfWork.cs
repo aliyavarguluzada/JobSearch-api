@@ -17,7 +17,6 @@ namespace JobSearch.Application.Repositories
         ICityRepository Cities { get; }
         IOpportunityTypeRepository OpportunityTypes { get; }
         Task DisposeAsync();
-        Task Complete();
     }
 
 }

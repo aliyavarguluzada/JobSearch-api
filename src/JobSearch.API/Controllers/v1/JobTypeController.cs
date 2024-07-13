@@ -1,4 +1,4 @@
-﻿using JobSearch.Application.CQRS.JobType;
+﻿using JobSearch.Application.Features.JobType.Command;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.JobType;
 using Microsoft.AspNetCore.Mvc;

@@ -25,7 +25,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateCategoryResponse() { Name = category.Name };
 
-                _unitOfWork.Categories.Add(category);
+                await _unitOfWork.Categories.Table.AddAsync(category);
+                await _unitOfWork.Categories.Complete();
 
                 return ApiResult<CreateCategoryResponse>.Ok(response);
             }

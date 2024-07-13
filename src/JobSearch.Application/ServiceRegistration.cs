@@ -1,5 +1,5 @@
 ﻿using JobSearch.Application.Features.Category.Command;
-using JobSearch.Application.Features.City;
+using JobSearch.Application.Features.City.Command;
 using JobSearch.Application.Features.Company.Command;
 using JobSearch.Application.Features.JobType.Command;
 using JobSearch.Application.Features.OpportunityType.Command;

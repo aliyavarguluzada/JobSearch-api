@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JobSearch.Domain.Entities;
 
 namespace JobSearch.Application.Repositories
 {
-    internal interface IWriteRepository<TEntity>
+    public interface IWriteRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
-        void Add(TEntity objModel);
-        void AddRange(IEnumerable<TEntity> objModel);
+        Task<bool> AddAsync(TEntity model);
+        Task<bool> AddRangeAsync(List<TEntity> datas);
+        bool Remove(TEntity model);
+        bool RemoveRange(List<TEntity> datas);
+        Task<bool> RemoveAsync(int id);
+        bool Update(TEntity model);
+
+        Task<int> SaveAsync();
     }
 }

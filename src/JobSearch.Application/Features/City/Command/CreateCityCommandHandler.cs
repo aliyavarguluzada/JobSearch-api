@@ -3,7 +3,7 @@ using JobSearch.Application.Result;
 using JobSearch.Models.v1.City;
 using MediatR;
 
-namespace JobSearch.Application.Features.City
+namespace JobSearch.Application.Features.City.Command
 {
     public class CreateCityCommandHandler : IRequestHandler<CreateCityCommand, ApiResult<CreateCityResponse>>
     {

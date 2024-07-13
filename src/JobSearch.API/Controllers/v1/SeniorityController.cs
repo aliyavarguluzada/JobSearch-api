@@ -1,4 +1,4 @@
-﻿using JobSearch.Application.CQRS.Seniority.Command;
+﻿using JobSearch.Application.Features.Seniority.Command;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Seniority;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿using JobSearch.Application.CQRS.Category.Command;
+﻿using JobSearch.Application.Features.Category.Command;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Category;
 using Microsoft.AspNetCore.Mvc;

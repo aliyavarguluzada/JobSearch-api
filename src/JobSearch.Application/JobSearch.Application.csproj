@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Category\Query\" />
+    <Folder Include="Features\City\Query\" />
     <Folder Include="Features\Company\Query\" />
     <Folder Include="Features\Seniority\Query\" />
     <Folder Include="Features\Vacancy\Query\" />
@@ -15,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
   </ItemGroup>
 
   <ItemGroup>

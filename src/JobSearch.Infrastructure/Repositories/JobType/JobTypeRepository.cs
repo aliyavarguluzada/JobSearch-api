@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Infrastructure.Repositories.JobType
 {
-    public class JobTypeRepository : Repository<JobSearch.Domain.Entities.JobType>, IJobTypeRepository
+    public class JobTypeRepository : WriteRepository<JobSearch.Domain.Entities.JobType>, IJobTypeRepository
     {
         public JobTypeRepository(ApplicationDbContext context) : base(context)
         {
