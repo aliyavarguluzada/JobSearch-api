@@ -1,9 +1,10 @@
-﻿using JobSearch.Application.Interfaces;
+﻿using JobSearch.Application.Features.JobType;
+using JobSearch.Application.Interfaces;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.JobType;
 using MediatR;
 
-namespace JobSearch.Application.CQRS.JobType
+namespace JobSearch.Application.Features.JobType.Command
 {
     public class CreateJobTypeCommandHandler : IRequestHandler<CreateJobTypeCommand, ApiResult<CreateJobTypeResponse>>
     {

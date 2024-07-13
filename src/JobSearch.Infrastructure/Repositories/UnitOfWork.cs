@@ -3,12 +3,14 @@ using JobSearch.Application.Repositories.Category;
 using JobSearch.Application.Repositories.City;
 using JobSearch.Application.Repositories.Company;
 using JobSearch.Application.Repositories.JobType;
+using JobSearch.Application.Repositories.OpportunityType;
 using JobSearch.Application.Repositories.Seniority;
 using JobSearch.Infrastructure.Data;
 using JobSearch.Infrastructure.Repositories.Category;
 using JobSearch.Infrastructure.Repositories.City;
 using JobSearch.Infrastructure.Repositories.Company;
 using JobSearch.Infrastructure.Repositories.JobType;
+using JobSearch.Infrastructure.Repositories.OpportunityType;
 using JobSearch.Infrastructure.Repositories.Seniority;
 
 namespace JobSearch.Infrastructure.Repositories
@@ -25,6 +27,7 @@ namespace JobSearch.Infrastructure.Repositories
             Seniorities = new SeniorityRepository(_context);
             Cities = new CityRepository(_context);
             JobTypes = new JobTypeRepository(_context);
+            OpportunityTypes = new OpportunityTypeRepository(_context);
 
         }
 
@@ -37,6 +40,8 @@ namespace JobSearch.Infrastructure.Repositories
         public ICityRepository Cities { get; private set; }
 
         public IJobTypeRepository JobTypes { get; private set; }
+
+        public IOpportunityTypeRepository OpportunityTypes { get; private set; }
 
         public async Task Complete() => await _context.SaveChangesAsync();
 

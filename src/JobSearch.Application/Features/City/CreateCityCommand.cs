@@ -2,7 +2,7 @@
 using JobSearch.Models.v1.City;
 using MediatR;
 
-namespace JobSearch.Application.CQRS.City
+namespace JobSearch.Application.Features.City
 {
     public class CreateCityCommand : IRequest<ApiResult<CreateCityResponse>>
     {

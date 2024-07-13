@@ -2,7 +2,7 @@
 using JobSearch.Models.v1.Seniority;
 using MediatR;
 
-namespace JobSearch.Application.CQRS.Seniority.Command
+namespace JobSearch.Application.Features.Seniority.Command
 {
     public class CreateSeniorityCommand : IRequest<ApiResult<CreateSeniorityResponse>>
     {

@@ -2,7 +2,7 @@
 using JobSearch.Models.v1.Company;
 using MediatR;
 
-namespace JobSearch.Application.CQRS.Company.Command
+namespace JobSearch.Application.Features.Company.Command
 {
     public class CreateCompanyCommand : IRequest<ApiResult<CreateCompanyResponse>>
     {

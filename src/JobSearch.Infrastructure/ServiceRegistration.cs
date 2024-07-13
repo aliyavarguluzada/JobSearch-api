@@ -25,6 +25,7 @@ namespace JobSearch.Infrastructure
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IJobTypeService, JobTypeService>();
+            services.AddScoped<IOpportunityTypeService, OpportunityTypeService>();
 
 
             services.AddDbContext<ApplicationDbContext>(options =>

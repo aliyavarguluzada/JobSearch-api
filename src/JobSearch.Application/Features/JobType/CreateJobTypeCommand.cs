@@ -2,7 +2,7 @@
 using JobSearch.Models.v1.JobType;
 using MediatR;
 
-namespace JobSearch.Application.CQRS.JobType
+namespace JobSearch.Application.Features.JobType.Command
 {
     public class CreateJobTypeCommand : IRequest<ApiResult<CreateJobTypeResponse>>
     {

@@ -2,7 +2,7 @@
 using JobSearch.Models.v1.Category;
 using MediatR;
 
-namespace JobSearch.Application.CQRS.Category.Command
+namespace JobSearch.Application.Features.Category.Command
 {
     public class CreateCategoryCommand : IRequest<ApiResult<CreateCategoryResponse>>
     {
