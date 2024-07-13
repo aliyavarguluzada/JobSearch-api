@@ -23,6 +23,8 @@ namespace JobSearch.Infrastructure
             services.AddScoped<IJobTypeService, JobTypeService>();
             services.AddScoped<IOpportunityTypeService, OpportunityTypeService>();
             services.AddScoped<ICurrencyService, CurrencyService>();
+            services.AddScoped<IOperatorService, OperatorService>();
+            services.AddScoped<IOperatorCodeService, OperatorCodeService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration["Database:Connection"]));

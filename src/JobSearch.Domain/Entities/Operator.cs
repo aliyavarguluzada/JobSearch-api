@@ -3,7 +3,7 @@
     public class Operator : BaseEntity
     {
         public string Name { get; set; }
-        public string Code { get; set; }
-      
+        public ICollection<OperatorCode> OperatorCodes { get; set; }
+
     }
 }

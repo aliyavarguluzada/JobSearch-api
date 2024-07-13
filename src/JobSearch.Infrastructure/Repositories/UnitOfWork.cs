@@ -4,6 +4,8 @@ using JobSearch.Application.Repositories.City;
 using JobSearch.Application.Repositories.Company;
 using JobSearch.Application.Repositories.Currency;
 using JobSearch.Application.Repositories.JobType;
+using JobSearch.Application.Repositories.Operator;
+using JobSearch.Application.Repositories.OperatorCode;
 using JobSearch.Application.Repositories.OpportunityType;
 using JobSearch.Application.Repositories.Seniority;
 using JobSearch.Infrastructure.Data;
@@ -12,6 +14,8 @@ using JobSearch.Infrastructure.Repositories.City;
 using JobSearch.Infrastructure.Repositories.Company;
 using JobSearch.Infrastructure.Repositories.Currency;
 using JobSearch.Infrastructure.Repositories.JobType;
+using JobSearch.Infrastructure.Repositories.Operator;
+using JobSearch.Infrastructure.Repositories.OperatorCode;
 using JobSearch.Infrastructure.Repositories.OpportunityType;
 using JobSearch.Infrastructure.Repositories.Seniority;
 
@@ -31,6 +35,8 @@ namespace JobSearch.Infrastructure.Repositories
             JobTypes = new JobTypeWriteRepository(_context);
             OpportunityTypes = new OpportunityTypeWriteRepository(_context);
             Currencies = new CurrencyWriteRepository(_context);
+            Operators = new OperatorWriteRepository(_context);
+            OperatorCodes = new OperatorCodeWriteRepository(_context);
 
         }
 
@@ -47,6 +53,10 @@ namespace JobSearch.Infrastructure.Repositories
         public IOpportunityTypeWriteRepository OpportunityTypes { get; private set; }
 
         public ICurrencyWriteRepository Currencies { get; private set; }
+
+        public IOperatorWriteRepository Operators { get; private set; }
+
+        public IOperatorCodeWriteRepository OperatorCodes { get; private set; }
 
         public async Task Complete() => await _context.SaveChangesAsync();
         public async Task SaveAsync() => await _context.SaveChangesAsync();

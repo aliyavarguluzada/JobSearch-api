@@ -9,17 +9,7 @@ namespace JobSearch.Infrastructure.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    ConfigurationManager configurationManager = new();
-        //    configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../WorkWaveApp.API"));
-        //    configurationManager.AddJsonFile("appsettings.json")
-        //                        .AddEnvironmentVariables();
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer("Database:Connection");
-        //    }
-        //}
+       
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -31,6 +21,7 @@ namespace JobSearch.Infrastructure.Data
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<JobType> JobTypes { get; set; }
         public DbSet<Operator> Operators { get; set; }
+        public DbSet<OperatorCode> OperatorCodes { get; set; }  
         public DbSet<OpportunityType> OpportunityTypes { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Salary> Salaries { get; set; }

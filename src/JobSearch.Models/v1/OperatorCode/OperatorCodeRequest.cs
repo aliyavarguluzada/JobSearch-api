@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JobSearch.Models.v1.OperatorCode
+{
+    public class OperatorCodeRequest
+    {
+        public int OperatorId { get; set; }
+        public string Code { get; set; }
+    }
+}
