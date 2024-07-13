@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Application.Repositories.Seniority
 {
-    public interface ISeniorityRepository : IRepository<JobSearch.Domain.Entities.Seniority>
+    public interface ISeniorityWriteRepository : IWriteRepository<JobSearch.Domain.Entities.Seniority>
     {
     }
 }

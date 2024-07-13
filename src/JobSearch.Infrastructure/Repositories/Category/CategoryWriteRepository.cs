@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Infrastructure.Repositories.Category
 {
-    public class CategoryRepository : WriteRepository<Domain.Entities.Category>, ICategoryRepository
+    public class CategoryWriteRepository : WriteRepository<Domain.Entities.Category>, ICategoryWriteRepository
     {
-        public CategoryRepository(ApplicationDbContext context) : base(context)
+        public CategoryWriteRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

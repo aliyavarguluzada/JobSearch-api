@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Infrastructure.Repositories.City
 {
-    public class CityRepository : WriteRepository<Domain.Entities.City>, ICityRepository
+    public class CityWriteRepository : WriteRepository<Domain.Entities.City>, ICityWriteRepository
     {
-        public CityRepository(ApplicationDbContext context) : base(context)
+        public CityWriteRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

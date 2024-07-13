@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Application.Repositories.City
 {
-    public interface ICityRepository : IRepository<JobSearch.Domain.Entities.City>
+    public interface ICityWriteRepository : IWriteRepository<JobSearch.Domain.Entities.City>
     {
     }
 }

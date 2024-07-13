@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Application.Repositories.Category
 {
-    public interface ICategoryRepository : IRepository<JobSearch.Domain.Entities.Category>
+    public interface ICategoryWriteRepository : IWriteRepository<JobSearch.Domain.Entities.Category>
     {
     }
 }

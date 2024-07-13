@@ -11,10 +11,6 @@ namespace JobSearch.Infrastructure
     {
         public static void AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //ConfigurationManager configurationManager = new();
-            //configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../WorkWaveApp.API"));
-            //configurationManager.AddJsonFile("appsettings.json")
-            //                    .AddEnvironmentVariables();
 
             IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
 
@@ -26,7 +22,7 @@ namespace JobSearch.Infrastructure
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IJobTypeService, JobTypeService>();
             services.AddScoped<IOpportunityTypeService, OpportunityTypeService>();
-
+            services.AddScoped<ICurrencyService, CurrencyService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration["Database:Connection"]));

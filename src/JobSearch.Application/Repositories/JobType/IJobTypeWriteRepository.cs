@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Application.Repositories.JobType
 {
-    public interface IJobTypeRepository : IRepository<JobSearch.Domain.Entities.JobType>
+    public interface IJobTypeWriteRepository : IRepository<JobSearch.Domain.Entities.JobType>
     {
     }
 }

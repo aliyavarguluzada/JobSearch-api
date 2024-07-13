@@ -1,6 +1,7 @@
 ﻿using JobSearch.Application.Features.Category.Command;
 using JobSearch.Application.Features.City.Command;
 using JobSearch.Application.Features.Company.Command;
+using JobSearch.Application.Features.Currency.Command;
 using JobSearch.Application.Features.JobType.Command;
 using JobSearch.Application.Features.OpportunityType.Command;
 using JobSearch.Application.Features.Seniority.Command;
@@ -18,6 +19,7 @@ namespace JobSearch.Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCityCommandHandler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateJobTypeCommandHandler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateOpportunityTypeCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCurrencyCommandHandler).Assembly));
         }
     }
 }

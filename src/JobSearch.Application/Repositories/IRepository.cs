@@ -1,7 +1,5 @@
 ﻿using JobSearch.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace JobSearch.Application.Repositories
 {
@@ -9,7 +7,6 @@ namespace JobSearch.Application.Repositories
     {
         DbSet<TEntity> Table { get; }
         Task Complete();
-
 
     }
 }
