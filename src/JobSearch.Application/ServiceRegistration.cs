@@ -6,6 +6,7 @@ using JobSearch.Application.Features.JobType.Command;
 using JobSearch.Application.Features.Operator.Command;
 using JobSearch.Application.Features.OperatorCode;
 using JobSearch.Application.Features.OpportunityType.Command;
+using JobSearch.Application.Features.Phone;
 using JobSearch.Application.Features.Seniority.Command;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +25,7 @@ namespace JobSearch.Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCurrencyCommandHandler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateOperatorCommandHandler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateOperatorCodeCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePhoneCommandHandler).Assembly));
         }
     }
 }

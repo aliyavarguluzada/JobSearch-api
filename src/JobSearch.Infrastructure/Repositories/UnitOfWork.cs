@@ -7,6 +7,7 @@ using JobSearch.Application.Repositories.JobType;
 using JobSearch.Application.Repositories.Operator;
 using JobSearch.Application.Repositories.OperatorCode;
 using JobSearch.Application.Repositories.OpportunityType;
+using JobSearch.Application.Repositories.Phone;
 using JobSearch.Application.Repositories.Seniority;
 using JobSearch.Infrastructure.Data;
 using JobSearch.Infrastructure.Repositories.Category;
@@ -17,6 +18,7 @@ using JobSearch.Infrastructure.Repositories.JobType;
 using JobSearch.Infrastructure.Repositories.Operator;
 using JobSearch.Infrastructure.Repositories.OperatorCode;
 using JobSearch.Infrastructure.Repositories.OpportunityType;
+using JobSearch.Infrastructure.Repositories.Phone;
 using JobSearch.Infrastructure.Repositories.Seniority;
 
 namespace JobSearch.Infrastructure.Repositories
@@ -37,6 +39,7 @@ namespace JobSearch.Infrastructure.Repositories
             Currencies = new CurrencyWriteRepository(_context);
             Operators = new OperatorWriteRepository(_context);
             OperatorCodes = new OperatorCodeWriteRepository(_context);
+            Phones = new PhoneWriteRepository(_context);
 
         }
 
@@ -57,6 +60,8 @@ namespace JobSearch.Infrastructure.Repositories
         public IOperatorWriteRepository Operators { get; private set; }
 
         public IOperatorCodeWriteRepository OperatorCodes { get; private set; }
+
+        public IPhoneWriteRepository Phones { get; private set; }
 
         public async Task Complete() => await _context.SaveChangesAsync();
         public async Task SaveAsync() => await _context.SaveChangesAsync();

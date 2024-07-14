@@ -6,6 +6,7 @@ using JobSearch.Application.Repositories.JobType;
 using JobSearch.Application.Repositories.Operator;
 using JobSearch.Application.Repositories.OperatorCode;
 using JobSearch.Application.Repositories.OpportunityType;
+using JobSearch.Application.Repositories.Phone;
 using JobSearch.Application.Repositories.Seniority;
 
 namespace JobSearch.Application.Repositories
@@ -22,6 +23,7 @@ namespace JobSearch.Application.Repositories
         ICurrencyWriteRepository Currencies { get; }
         IOperatorWriteRepository Operators { get; }
         IOperatorCodeWriteRepository OperatorCodes { get; }
+        IPhoneWriteRepository Phones { get; }
         Task DisposeAsync();
     }
 
