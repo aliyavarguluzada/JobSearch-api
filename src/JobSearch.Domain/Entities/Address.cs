@@ -1,6 +1,6 @@
 ﻿namespace JobSearch.Domain.Entities
 {
-    public class Adress : BaseEntity
+    public class Address : BaseEntity
     {
         public string Name { get; set; }
         public int CityId { get; set; }

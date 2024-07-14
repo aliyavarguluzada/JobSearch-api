@@ -2,5 +2,7 @@
 {
     public class CreateVacancyResponse
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

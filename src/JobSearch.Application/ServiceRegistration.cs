@@ -1,4 +1,6 @@
-﻿using JobSearch.Application.Features.Category.Command;
+﻿using JobSearch.Application.CQRS.Vacancies.Command;
+using JobSearch.Application.Features.Address;
+using JobSearch.Application.Features.Category.Command;
 using JobSearch.Application.Features.City.Command;
 using JobSearch.Application.Features.Company.Command;
 using JobSearch.Application.Features.Currency.Command;
@@ -7,6 +9,7 @@ using JobSearch.Application.Features.Operator.Command;
 using JobSearch.Application.Features.OperatorCode;
 using JobSearch.Application.Features.OpportunityType.Command;
 using JobSearch.Application.Features.Phone;
+using JobSearch.Application.Features.Salary;
 using JobSearch.Application.Features.Seniority.Command;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,6 +29,9 @@ namespace JobSearch.Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateOperatorCommandHandler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateOperatorCodeCommandHandler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePhoneCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateSalaryCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateAddressCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateVacancyCommandHandler).Assembly));
         }
     }
 }

@@ -13,7 +13,7 @@ namespace JobSearch.Infrastructure.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
-        public DbSet<Adress> Adresses { get; set; }
+        public DbSet<Address> Adresses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Company> Companies { get; set; }

@@ -6,7 +6,7 @@
         public int CategoryId { get; set; }
         public int CompanyId { get; set; }
         public int JobTypeId { get; set; }
-        public int OpportunityId { get; set; }
+        public int OpportunityTypeId { get; set; }
         public int SeniorityId { get; set; }
         public int AddressId { get; set; }
         public int PhoneId { get; set; }
@@ -19,7 +19,7 @@
         public JobType JobType { get; set; }
         public OpportunityType OpportunityType { get; set; }
         public Seniority Seniority { get; set; }
-        public Adress Adress { get; set; }
+        public Address Adress { get; set; }
         public Phone Phone { get; set; }
         public Salary Salary { get; set; }
 

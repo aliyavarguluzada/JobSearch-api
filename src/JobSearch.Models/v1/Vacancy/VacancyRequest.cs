@@ -12,7 +12,7 @@ namespace JobSearch.Models.v1.Vacancy
         public int CategoryId { get; set; }
         public int CompanyId { get; set; }
         public int JobTypeId { get; set; }
-        public int OpportunityId { get; set; }
+        public int OpportunityTypeId { get; set; }
         public int SeniorityId { get; set; }
         public int AddressId { get; set; }
         public int PhoneId { get; set; }

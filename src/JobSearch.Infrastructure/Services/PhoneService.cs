@@ -24,7 +24,7 @@ namespace JobSearch.Infrastructure.Services
                 var phone = new JobSearch.Domain.Entities.Phone()
                 {
                     Number = request.Number,
-                    OperatorCodeId = request.OperatorId,
+                    OperatorCodeId = request.OperatorId
                 };
 
                 var response = new CreatePhoneResponse() { Number = phone.Number };
