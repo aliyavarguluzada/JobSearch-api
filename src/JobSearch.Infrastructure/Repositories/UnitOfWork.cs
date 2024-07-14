@@ -49,6 +49,7 @@ namespace JobSearch.Infrastructure.Repositories
             Salaries = new SalaryWriteRepository(_context);
             Addresses = new AddressWriteRepository(_context);
             Vacancies = new VacancyWriteRepository(_context);
+            VacanciesRead = new VacancyReadRepository(_context);
         }
 
         public ICompanyWriteRepository Companies { get; private set; }
@@ -64,7 +65,9 @@ namespace JobSearch.Infrastructure.Repositories
         public ISalaryWriteRepository Salaries { get; private set; }
         public IAddressWriteRepository Addresses { get; private set; }
         public IVacancyWriteRepository Vacancies { get; private set; }
-       
+
+        public IVacancyReadRepository VacanciesRead { get; private set; }
+
         public async Task Complete() => await _context.SaveChangesAsync();
         public async Task SaveAsync() => await _context.SaveChangesAsync();
         public async Task DisposeAsync() => await _context.DisposeAsync();

@@ -13,7 +13,6 @@
     <Folder Include="Features\Currency\Query\" />
     <Folder Include="Features\Operator\Query\" />
     <Folder Include="Features\Seniority\Query\" />
-    <Folder Include="Features\Vacancy\Query\" />
   </ItemGroup>
 
   <ItemGroup>

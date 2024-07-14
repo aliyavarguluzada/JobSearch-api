@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace JobSearch.Infrastructure.Repositories
 {
-    internal class ReadRepository<TEntity> : IReadRepository<TEntity> where TEntity : BaseEntity
+    public class ReadRepository<TEntity> : IReadRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly ApplicationDbContext _context;
         public ReadRepository(ApplicationDbContext context)

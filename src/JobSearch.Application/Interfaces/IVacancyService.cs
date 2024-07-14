@@ -6,5 +6,6 @@ namespace JobSearch.Application.Interfaces
     public interface IVacancyService
     {
         public Task<ApiResult<CreateVacancyResponse>> Add(VacancyRequest request);
+        public Task<List<GetAllVacanciesDto>> GetAll();
     }
 }

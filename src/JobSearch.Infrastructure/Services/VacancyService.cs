@@ -55,5 +55,39 @@ namespace JobSearch.Infrastructure.Services
                 return ApiResult<CreateVacancyResponse>.Error();
             }
         }
+
+        public async Task<List<GetAllVacanciesDto>> GetAll()
+        {
+            try
+            {
+                var vacancies = _unitOfWork.VacanciesRead.GetAll();
+
+                var dto = vacancies.Select(c => new GetAllVacanciesDto()
+                {
+                    VacancyId = c.Id,
+                    Name = c.Name,
+                    Description = c.Description,
+                    PhoneId = c.PhoneId,
+                    AddressId = c.AddressId,
+                    CategoryId = c.CategoryId,
+                    CompanyId = c.CompanyId,
+                    IsPremium = c.IsPremium,
+                    JobTypeId = c.JobTypeId,
+                    OpportunityTypeId = c.OpportunityTypeId,
+                    SalaryId = c.SalaryId,
+                    SeniorityId = c.SeniorityId,
+                    Website = c.Website
+
+                }).ToList();
+
+                return dto;
+
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Dispose();
+                return new List<GetAllVacanciesDto>();
+            }
+        }
     }
 }

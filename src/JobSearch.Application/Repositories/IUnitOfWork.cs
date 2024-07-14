@@ -30,6 +30,7 @@ namespace JobSearch.Application.Repositories
         ISalaryWriteRepository Salaries { get; }
         IAddressWriteRepository Addresses { get; }
         IVacancyWriteRepository Vacancies { get; }
+        IVacancyReadRepository VacanciesRead { get; }
         Task DisposeAsync();
     }
 
