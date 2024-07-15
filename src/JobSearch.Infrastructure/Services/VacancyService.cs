@@ -1,6 +1,7 @@
 ﻿using JobSearch.Application.Interfaces;
 using JobSearch.Application.Repositories;
 using JobSearch.Application.Result;
+using JobSearch.Models.v1.Pagination;
 using JobSearch.Models.v1.Vacancy;
 
 namespace JobSearch.Infrastructure.Services
@@ -56,7 +57,7 @@ namespace JobSearch.Infrastructure.Services
             }
         }
 
-        public async Task<List<GetAllVacanciesDto>> GetAll()
+        public async Task<List<GetAllVacanciesDto>> GetAll(PaginationModel model)
         {
             try
             {
@@ -78,7 +79,10 @@ namespace JobSearch.Infrastructure.Services
                     SeniorityId = c.SeniorityId,
                     Website = c.Website
 
-                }).ToList();
+                })
+                .Skip((model.PageNumber - 1) * model.PageSize)
+                .Take(model.PageSize)
+                .ToList();
 
                 return dto;
 

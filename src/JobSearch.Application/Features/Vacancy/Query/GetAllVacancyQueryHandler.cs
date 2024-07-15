@@ -14,7 +14,7 @@ namespace JobSearch.Application.Features.Vacancy.Query
         }
 
         public async Task<List<GetAllVacanciesDto>> Handle(GetAllVacancyQuery request, CancellationToken cancellationToken)
-       => await _vacancyService.GetAll();
+       => await _vacancyService.GetAll(request.Model);
 
 
     }

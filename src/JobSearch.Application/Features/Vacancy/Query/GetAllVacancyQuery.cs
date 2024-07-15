@@ -1,4 +1,5 @@
 ﻿using JobSearch.Application.Result;
+using JobSearch.Models.v1.Pagination;
 using JobSearch.Models.v1.Vacancy;
 using MediatR;
 using System;
@@ -12,6 +13,10 @@ namespace JobSearch.Application.Features.Vacancy.Query
 {
     public class GetAllVacancyQuery : IRequest<List<GetAllVacanciesDto>>
     {
-
+        public GetAllVacancyQuery(PaginationModel model) 
+        {
+            Model = model;
+        } 
+        public PaginationModel Model { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using JobSearch.Application.CQRS.Vacancies.Command;
 using JobSearch.Application.Features.Vacancy.Query;
 using JobSearch.Application.Result;
+using JobSearch.Models.v1.Pagination;
 using JobSearch.Models.v1.Vacancy;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ namespace JobSearch.API.Controllers.v1
           await Mediator.Send(new CreateVacancyCommand(request));
 
         [HttpGet("getAll")]
-        public async Task<List<GetAllVacanciesDto>> GetAll()
-            => await Mediator.Send(new GetAllVacancyQuery());
+        public async Task<List<GetAllVacanciesDto>> GetAll([FromQuery] PaginationModel model)
+            => await Mediator.Send(new GetAllVacancyQuery(model));
     }
 }
