@@ -32,8 +32,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateOperatorCodeResponse() { Code = request.Code };
 
-                await _unitOfWork.OperatorCodes.Table.AddAsync(opCode);
-                await _unitOfWork.OperatorCodes.Complete();
+                await _unitOfWork.OperatorCodesWrite.Table.AddAsync(opCode);
+                await _unitOfWork.OperatorCodesWrite.Complete();
 
                 return ApiResult<CreateOperatorCodeResponse>.Ok(response);
             }

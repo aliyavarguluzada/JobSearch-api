@@ -30,8 +30,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateCurrencyResponse() { Name = currency.Name, Symbol = request.Symbol };
 
-                await _unitOfWork.Currencies.Table.AddAsync(currency);
-                await _unitOfWork.Currencies.Complete();
+                await _unitOfWork.CurrenciesWrite.Table.AddAsync(currency);
+                await _unitOfWork.CurrenciesWrite.Complete();
 
                 return ApiResult<CreateCurrencyResponse>.Ok(response);
             }

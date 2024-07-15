@@ -28,8 +28,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateOperatorResponse() { Name = @operator.Name };
 
-                await _unitOfWork.Operators.Table.AddAsync(@operator);
-                await _unitOfWork.Operators.Complete();
+                await _unitOfWork.OperatorsWrite.Table.AddAsync(@operator);
+                await _unitOfWork.OperatorsWrite.Complete();
 
 
                 return ApiResult<CreateOperatorResponse>.Ok(response);

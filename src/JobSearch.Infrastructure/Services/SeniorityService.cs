@@ -24,8 +24,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateSeniorityResponse() { Name = seniority.Name };
 
-                await _unitOfWork.Seniorities.Table.AddAsync(seniority);
-                await _unitOfWork.Categories.Complete();
+                await _unitOfWork.SenioritiesWrite.Table.AddAsync(seniority);
+                await _unitOfWork.SenioritiesWrite.Complete();
 
 
                 return ApiResult<CreateSeniorityResponse>.Ok(response);

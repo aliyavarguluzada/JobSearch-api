@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace JobSearch.Application.Features.Vacancy.Query
 {
-    public class GetAllVacancyQuery : IRequest<List<GetAllVacanciesDto>>
+    public class GetAllVacancyQuery : IRequest<List<GetVacancyDto>>
     {
         public GetAllVacancyQuery(PaginationModel model) 
         {

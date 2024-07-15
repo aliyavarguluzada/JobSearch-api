@@ -1,6 +1,6 @@
 ﻿namespace JobSearch.Models.v1.Vacancy
 {
-    public class GetAllVacanciesDto
+    public class GetVacancyDto
     {
         public int VacancyId { get; set; }
         public string Name { get; set; }

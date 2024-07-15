@@ -24,8 +24,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateOpportunityTypeResponse() { Name = opportunityType.Name };
 
-                await _unitOfWork.OpportunityTypes.Table.AddAsync(opportunityType);
-                await _unitOfWork.Categories.Complete();
+                await _unitOfWork.OpportunityTypesWrite.Table.AddAsync(opportunityType);
+                await _unitOfWork.OpportunityTypesWrite.Complete();
 
 
                 return ApiResult<CreateOpportunityTypeResponse>.Ok(response);

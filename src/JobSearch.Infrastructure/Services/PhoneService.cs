@@ -29,8 +29,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreatePhoneResponse() { Number = phone.Number };
 
-                await _unitOfWork.Phones.Table.AddAsync(phone);
-                await _unitOfWork.Phones.Complete();
+                await _unitOfWork.PhonesWrite.Table.AddAsync(phone);
+                await _unitOfWork.PhonesWrite.Complete();
 
 
                 return ApiResult<CreatePhoneResponse>.Ok(response);

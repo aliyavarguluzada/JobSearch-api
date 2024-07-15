@@ -36,8 +36,8 @@ namespace JobSearch.Infrastructure.Services
                     Street = request.Street
                 };
 
-                await _unitOfWork.Addresses.Table.AddAsync(address);
-                await _unitOfWork.Addresses.Complete();
+                await _unitOfWork.AddressesWrite.Table.AddAsync(address);
+                await _unitOfWork.AddressesWrite.Complete();
 
                 return ApiResult<CreateAddressResponse>.Ok(response);
             }

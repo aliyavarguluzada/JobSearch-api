@@ -39,8 +39,8 @@ namespace JobSearch.Infrastructure.Services
                     About = company.About
                 };
 
-                await _unitOfWork.Companies.Table.AddAsync(company);
-                await _unitOfWork.Categories.Complete();
+                await _unitOfWork.CompaniesWrite.Table.AddAsync(company);
+                await _unitOfWork.CompaniesWrite.Complete();
 
 
                 return ApiResult<CreateCompanyResponse>.Ok(response);

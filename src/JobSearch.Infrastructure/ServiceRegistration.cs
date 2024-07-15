@@ -29,6 +29,7 @@ namespace JobSearch.Infrastructure
             services.AddScoped<ISalaryService, SalaryService>();
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IVacancyService, VacancyService>();
+            services.AddScoped<IFavoriteService, FavoriteService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration["Database:Connection"]));

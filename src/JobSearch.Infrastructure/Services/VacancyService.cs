@@ -3,6 +3,7 @@ using JobSearch.Application.Repositories;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Pagination;
 using JobSearch.Models.v1.Vacancy;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearch.Infrastructure.Services
 {
@@ -44,8 +45,8 @@ namespace JobSearch.Infrastructure.Services
                     Description = vacancy.Description
                 };
 
-                await _unitOfWork.Vacancies.Table.AddAsync(vacancy);
-                await _unitOfWork.Vacancies.Complete();
+                await _unitOfWork.VacanciesWrite.Table.AddAsync(vacancy);
+                await _unitOfWork.VacanciesWrite.Complete();
 
 
                 return ApiResult<CreateVacancyResponse>.Ok(response);
@@ -57,13 +58,16 @@ namespace JobSearch.Infrastructure.Services
             }
         }
 
-        public async Task<List<GetAllVacanciesDto>> GetAll(PaginationModel model)
+        public async Task<List<GetVacancyDto>> GetAll(PaginationModel model)
         {
             try
             {
                 var vacancies = _unitOfWork.VacanciesRead.GetAll();
 
-                var dto = vacancies.Select(c => new GetAllVacanciesDto()
+                if (vacancies is null)
+                    return new List<GetVacancyDto>();
+
+                var dto = await vacancies.Select(c => new GetVacancyDto()
                 {
                     VacancyId = c.Id,
                     Name = c.Name,
@@ -82,7 +86,7 @@ namespace JobSearch.Infrastructure.Services
                 })
                 .Skip((model.PageNumber - 1) * model.PageSize)
                 .Take(model.PageSize)
-                .ToList();
+                .ToListAsync();
 
                 return dto;
 
@@ -90,7 +94,46 @@ namespace JobSearch.Infrastructure.Services
             catch (Exception)
             {
                 _unitOfWork.Dispose();
-                return new List<GetAllVacanciesDto>();
+                return new List<GetVacancyDto>();
+            }
+        }
+
+        public async Task<GetVacancyDto> GetById(int id)
+        {
+            try
+            {
+                if (id == 0)
+                    return new GetVacancyDto();
+
+                var vacancy = await _unitOfWork.VacanciesRead.GetByIdAsync(id);
+
+                if (vacancy is null)
+                    return new GetVacancyDto();
+
+                var vacancyDto = new GetVacancyDto()
+                {
+                    VacancyId = vacancy.Id,
+                    Name = vacancy.Name,
+                    Description = vacancy.Description,
+                    PhoneId = vacancy.PhoneId,
+                    AddressId = vacancy.AddressId,
+                    CategoryId = vacancy.CategoryId,
+                    SeniorityId = vacancy.SeniorityId,
+                    SalaryId = vacancy.SalaryId,
+                    Website = vacancy.Website,
+                    CompanyId = vacancy.CompanyId,
+                    IsPremium = vacancy.IsPremium,
+                    JobTypeId = vacancy.JobTypeId,
+                    OpportunityTypeId = vacancy.OpportunityTypeId
+                };
+
+                return vacancyDto;
+
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.DisposeAsync();
+                return new GetVacancyDto();
             }
         }
     }

@@ -33,8 +33,8 @@ namespace JobSearch.Infrastructure.Services
 
                 var response = new CreateSalaryResponse() { Value = request.Value };
 
-                await _unitOfWork.Salaries.Table.AddAsync(salary);
-                await _unitOfWork.Salaries.Complete();
+                await _unitOfWork.SalariesWrite.Table.AddAsync(salary);
+                await _unitOfWork.SalariesWrite.Complete();
 
                 return ApiResult<CreateSalaryResponse>.Ok(response);
             }

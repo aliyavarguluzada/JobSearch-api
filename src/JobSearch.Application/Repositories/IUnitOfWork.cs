@@ -3,6 +3,7 @@ using JobSearch.Application.Repositories.Category;
 using JobSearch.Application.Repositories.City;
 using JobSearch.Application.Repositories.Company;
 using JobSearch.Application.Repositories.Currency;
+using JobSearch.Application.Repositories.Favorite;
 using JobSearch.Application.Repositories.JobType;
 using JobSearch.Application.Repositories.Operator;
 using JobSearch.Application.Repositories.OperatorCode;
@@ -17,20 +18,22 @@ namespace JobSearch.Application.Repositories
 
     public interface IUnitOfWork : IDisposable
     {
-        ICompanyWriteRepository Companies { get; }
-        ICategoryWriteRepository Categories { get; }
-        ISeniorityWriteRepository Seniorities { get; }
-        IJobTypeWriteRepository JobTypes { get; }
-        ICityWriteRepository Cities { get; }
-        IOpportunityTypeWriteRepository OpportunityTypes { get; }
-        ICurrencyWriteRepository Currencies { get; }
-        IOperatorWriteRepository Operators { get; }
-        IOperatorCodeWriteRepository OperatorCodes { get; }
-        IPhoneWriteRepository Phones { get; }
-        ISalaryWriteRepository Salaries { get; }
-        IAddressWriteRepository Addresses { get; }
-        IVacancyWriteRepository Vacancies { get; }
+        ICompanyWriteRepository CompaniesWrite { get; }
+        ICategoryWriteRepository CategoriesWrite { get; }
+        ISeniorityWriteRepository SenioritiesWrite { get; }
+        IJobTypeWriteRepository JobTypesWrite { get; }
+        ICityWriteRepository CitiesWrite { get; }
+        IOpportunityTypeWriteRepository OpportunityTypesWrite { get; }
+        ICurrencyWriteRepository CurrenciesWrite { get; }
+        IOperatorWriteRepository OperatorsWrite { get; }
+        IOperatorCodeWriteRepository OperatorCodesWrite { get; }
+        IPhoneWriteRepository PhonesWrite { get; }
+        ISalaryWriteRepository SalariesWrite { get; }
+        IAddressWriteRepository AddressesWrite { get; }
+        IVacancyWriteRepository VacanciesWrite { get; }
         IVacancyReadRepository VacanciesRead { get; }
+        IFavoriteWriteRepository FavoritesWrite { get; }
+
         Task DisposeAsync();
     }
 

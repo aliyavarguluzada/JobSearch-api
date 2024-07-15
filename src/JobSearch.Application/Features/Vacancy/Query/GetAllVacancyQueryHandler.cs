@@ -4,7 +4,7 @@ using MediatR;
 
 namespace JobSearch.Application.Features.Vacancy.Query
 {
-    public class GetAllVacancyQueryHandler : IRequestHandler<GetAllVacancyQuery, List<GetAllVacanciesDto>>
+    public class GetAllVacancyQueryHandler : IRequestHandler<GetAllVacancyQuery, List<GetVacancyDto>>
     {
         private readonly IVacancyService _vacancyService;
 
@@ -13,7 +13,7 @@ namespace JobSearch.Application.Features.Vacancy.Query
             _vacancyService = vacancyService;
         }
 
-        public async Task<List<GetAllVacanciesDto>> Handle(GetAllVacancyQuery request, CancellationToken cancellationToken)
+        public async Task<List<GetVacancyDto>> Handle(GetAllVacancyQuery request, CancellationToken cancellationToken)
        => await _vacancyService.GetAll(request.Model);
 
 
