@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class SeniorityController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateSeniorityResponse>> Add(SeniorityRequest request) =>
+        public async Task<ApiResult<CreateSeniorityResponse>> Add([FromForm] SeniorityRequest request) =>
             await Mediator.Send(new CreateSeniorityCommand(request));
     }
 }

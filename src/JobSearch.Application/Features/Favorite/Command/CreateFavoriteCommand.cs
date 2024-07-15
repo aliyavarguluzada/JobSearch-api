@@ -2,7 +2,7 @@
 using JobSearch.Models.v1.Favorite;
 using MediatR;
 
-namespace JobSearch.Application.Features.Favorite
+namespace JobSearch.Application.Features.Favorite.Command
 {
     public class CreateFavoriteCommand : IRequest<ApiResult<CreateFavoriteResponse>>
     {

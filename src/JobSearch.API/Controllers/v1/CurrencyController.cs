@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class CurrencyController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateCurrencyResponse>> Add(CurrencyRequest request) =>
+        public async Task<ApiResult<CreateCurrencyResponse>> Add([FromForm] CurrencyRequest request) =>
             await Mediator.Send(new CreateCurrencyCommand(request));
     }
 }

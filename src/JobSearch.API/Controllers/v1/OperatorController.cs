@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class OperatorController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateOperatorResponse>> Add(OperatorRequest request) =>
+        public async Task<ApiResult<CreateOperatorResponse>> Add([FromForm] OperatorRequest request) =>
             await Mediator.Send(new CreateOperatorCommand(request));
     }
 }

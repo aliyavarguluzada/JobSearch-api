@@ -11,7 +11,7 @@ namespace JobSearch.API.Controllers.v1
     {
 
         [HttpPost("add")]
-        public async Task<ApiResult<CreateCategoryResponse>> Add(CategoryRequest request) =>
+        public async Task<ApiResult<CreateCategoryResponse>> Add([FromForm] CategoryRequest request) =>
             await Mediator.Send(new CreateCategoryCommand(request));
     }
 }

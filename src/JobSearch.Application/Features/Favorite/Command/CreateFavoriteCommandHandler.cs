@@ -3,7 +3,7 @@ using JobSearch.Application.Result;
 using JobSearch.Models.v1.Favorite;
 using MediatR;
 
-namespace JobSearch.Application.Features.Favorite
+namespace JobSearch.Application.Features.Favorite.Command
 {
     public class CreateFavoriteCommandHandler : IRequestHandler<CreateFavoriteCommand, ApiResult<CreateFavoriteResponse>>
     {

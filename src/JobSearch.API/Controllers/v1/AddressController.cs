@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class AddressController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateAddressResponse>> Add(AddressRequest request) =>
+        public async Task<ApiResult<CreateAddressResponse>> Add([FromForm] AddressRequest request) =>
             await Mediator.Send(new CreateAddressCommand(request));
     }
 }

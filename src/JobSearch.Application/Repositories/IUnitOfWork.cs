@@ -33,6 +33,7 @@ namespace JobSearch.Application.Repositories
         IVacancyWriteRepository VacanciesWrite { get; }
         IVacancyReadRepository VacanciesRead { get; }
         IFavoriteWriteRepository FavoritesWrite { get; }
+        IFavoriteReadRepository FavoritesRead { get; }
 
         Task DisposeAsync();
     }

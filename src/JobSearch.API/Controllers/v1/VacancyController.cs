@@ -12,7 +12,7 @@ namespace JobSearch.API.Controllers.v1
     public class VacancyController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateVacancyResponse>> Add(VacancyRequest request) =>
+        public async Task<ApiResult<CreateVacancyResponse>> Add([FromForm] VacancyRequest request) =>
             await Mediator.Send(new CreateVacancyCommand(request));
 
         [HttpGet("getAll")]

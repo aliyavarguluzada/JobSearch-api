@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class CityController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateCityResponse>> Add(CityRequest request) =>
+        public async Task<ApiResult<CreateCityResponse>> Add([FromForm] CityRequest request) =>
           await Mediator.Send(new CreateCityCommand(request));
     }
 }

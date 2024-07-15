@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class SalaryController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateSalaryResponse>> Add(SalaryRequest request) =>
+        public async Task<ApiResult<CreateSalaryResponse>> Add([FromForm] SalaryRequest request) =>
             await Mediator.Send(new CreateSalaryCommand(request));
     }
 }

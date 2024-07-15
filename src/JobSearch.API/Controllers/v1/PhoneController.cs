@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class PhoneController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreatePhoneResponse>> Add(PhoneRequest request) =>
+        public async Task<ApiResult<CreatePhoneResponse>> Add([FromForm] PhoneRequest request) =>
             await Mediator.Send(new CreatePhoneCommand(request));
     }
 }

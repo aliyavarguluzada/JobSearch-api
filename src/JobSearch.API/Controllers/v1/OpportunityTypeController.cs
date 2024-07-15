@@ -10,7 +10,7 @@ namespace JobSearch.API.Controllers.v1
     public class OpportunityTypeController : BaseController
     {
         [HttpPost("add")]
-        public async Task<ApiResult<CreateOpportunityTypeResponse>> Add(OpportunityTypeRequest request) =>
+        public async Task<ApiResult<CreateOpportunityTypeResponse>> Add([FromForm] OpportunityTypeRequest request) =>
             await Mediator.Send(new CreateOpportunityTypeCommand(request));
     }
 }

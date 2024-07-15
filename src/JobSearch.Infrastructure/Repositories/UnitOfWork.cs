@@ -53,6 +53,7 @@ namespace JobSearch.Infrastructure.Repositories
             VacanciesWrite = new VacancyWriteRepository(_context);
             VacanciesRead = new VacancyReadRepository(_context);
             FavoritesWrite = new FavoriteWriteRepistory(_context);
+            FavoritesRead = new FavoriteReadRepository(_context);
         }
 
         public ICompanyWriteRepository CompaniesWrite { get; private set; }
@@ -72,6 +73,8 @@ namespace JobSearch.Infrastructure.Repositories
         public IVacancyReadRepository VacanciesRead { get; private set; }
 
         public IFavoriteWriteRepository FavoritesWrite { get; private set; }
+
+        public IFavoriteReadRepository FavoritesRead { get; private set; }
 
         public async Task Complete() => await _context.SaveChangesAsync();
         public async Task SaveAsync() => await _context.SaveChangesAsync();

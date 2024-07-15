@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace JobSearch.API.Controllers
 {
     [ApiController]
+
     public class BaseController : ControllerBase
     {
         private readonly IMediator _mediator;
