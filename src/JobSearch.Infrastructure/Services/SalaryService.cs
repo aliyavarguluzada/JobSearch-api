@@ -5,14 +5,10 @@ using JobSearch.Models.v1.Salary;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class SalaryService : ISalaryService
+    public class SalaryService : BaseService, ISalaryService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        public SalaryService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public SalaryService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
 
         public async Task<ApiResult<CreateSalaryResponse>> Add(SalaryRequest request)
         {

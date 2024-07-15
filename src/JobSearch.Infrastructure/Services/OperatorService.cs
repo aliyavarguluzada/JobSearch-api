@@ -5,13 +5,10 @@ using JobSearch.Models.v1.Operator;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class OperatorService : IOperatorService
+    public class OperatorService : BaseService, IOperatorService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public OperatorService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public OperatorService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
 
         public async Task<ApiResult<CreateOperatorResponse>> Add(OperatorRequest request)
         {

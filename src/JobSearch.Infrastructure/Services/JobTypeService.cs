@@ -5,13 +5,11 @@ using JobSearch.Models.v1.JobType;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class JobTypeService : IJobTypeService
+    public class JobTypeService : BaseService, IJobTypeService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public JobTypeService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public JobTypeService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+
         public async Task<ApiResult<CreateJobTypeResponse>> Add(JobTypeRequest request)
         {
             try

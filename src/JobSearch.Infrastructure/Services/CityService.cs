@@ -5,13 +5,10 @@ using JobSearch.Models.v1.City;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class CityService : ICityService
+    public class CityService : BaseService, ICityService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public CityService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public CityService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        
 
         public async Task<ApiResult<CreateCityResponse>> Add(CityRequest request)
         {

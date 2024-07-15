@@ -5,13 +5,10 @@ using JobSearch.Models.v1.Phone;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class PhoneService : IPhoneService
+    public class PhoneService : BaseService, IPhoneService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public PhoneService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public PhoneService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
 
         public async Task<ApiResult<CreatePhoneResponse>> Add(PhoneRequest request)
         {

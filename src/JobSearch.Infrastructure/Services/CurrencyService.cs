@@ -5,14 +5,10 @@ using JobSearch.Models.v1.Currency;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class CurrencyService : ICurrencyService
+    public class CurrencyService : BaseService, ICurrencyService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        public CurrencyService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public CurrencyService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
 
         public async Task<ApiResult<CreateCurrencyResponse>> Add(CurrencyRequest request)
         {

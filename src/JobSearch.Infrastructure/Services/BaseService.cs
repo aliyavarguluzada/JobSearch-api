@@ -11,6 +11,5 @@ namespace JobSearch.Infrastructure.Services
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public IUnitOfWork UnitOfWork => _unitOfWork;
     }
 }

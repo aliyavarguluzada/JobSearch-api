@@ -5,13 +5,11 @@ using JobSearch.Models.v1.OpportunityType;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class OpportunityTypeService : IOpportunityTypeService
+    public class OpportunityTypeService : BaseService, IOpportunityTypeService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public OpportunityTypeService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public OpportunityTypeService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+
         public async Task<ApiResult<CreateOpportunityTypeResponse>> Add(OpportunityTypeRequest request)
         {
             try

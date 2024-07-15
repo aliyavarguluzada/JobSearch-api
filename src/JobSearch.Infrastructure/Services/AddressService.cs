@@ -5,14 +5,10 @@ using JobSearch.Models.v1.Address;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class AddressService : IAddressService
+    public class AddressService : BaseService, IAddressService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public AddressService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
+        public AddressService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        }
         public async Task<ApiResult<CreateAddressResponse>> Add(AddressRequest request)
         {
 

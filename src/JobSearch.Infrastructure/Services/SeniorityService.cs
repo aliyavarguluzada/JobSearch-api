@@ -5,13 +5,11 @@ using JobSearch.Models.v1.Seniority;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class SeniorityService : ISeniorityService
+    public class SeniorityService : BaseService, ISeniorityService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public SeniorityService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public SeniorityService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+
         public async Task<ApiResult<CreateSeniorityResponse>> Add(SeniorityRequest request)
         {
             try

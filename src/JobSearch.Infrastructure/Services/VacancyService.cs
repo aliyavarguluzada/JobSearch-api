@@ -7,13 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class VacancyService : IVacancyService
+    public class VacancyService : BaseService, IVacancyService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public VacancyService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public VacancyService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+
         public async Task<ApiResult<CreateVacancyResponse>> Add(VacancyRequest request)
         {
 

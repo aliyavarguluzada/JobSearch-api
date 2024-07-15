@@ -6,14 +6,10 @@ using JobSearch.Models.v1.Favorite;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class FavoriteService : IFavoriteService
+    public class FavoriteService : BaseService, IFavoriteService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        public FavoriteService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public FavoriteService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
 
         public async Task<ApiResult<CreateFavoriteResponse>> Add(FavoriteRequest request)
         {

@@ -5,14 +5,10 @@ using JobSearch.Models.v1.Company;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class CompanyService : ICompanyService
+    public class CompanyService : BaseService, ICompanyService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        public CompanyService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public CompanyService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
 
         public async Task<ApiResult<CreateCompanyResponse>> Add(CompanyRequest request)
         {

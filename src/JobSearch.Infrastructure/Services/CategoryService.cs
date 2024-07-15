@@ -5,14 +5,11 @@ using JobSearch.Models.v1.Category;
 
 namespace JobSearch.Infrastructure.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService : BaseService, ICategoryService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public CategoryService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
+        public CategoryService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        }
+
         public async Task<ApiResult<CreateCategoryResponse>> Add(CategoryRequest request)
         {
             try
