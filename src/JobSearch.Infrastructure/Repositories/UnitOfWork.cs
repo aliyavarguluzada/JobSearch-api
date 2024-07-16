@@ -1,34 +1,4 @@
-﻿using JobSearch.Application.Repositories;
-using JobSearch.Application.Repositories.Address;
-using JobSearch.Application.Repositories.Category;
-using JobSearch.Application.Repositories.City;
-using JobSearch.Application.Repositories.Company;
-using JobSearch.Application.Repositories.Currency;
-using JobSearch.Application.Repositories.Favorite;
-using JobSearch.Application.Repositories.JobType;
-using JobSearch.Application.Repositories.Operator;
-using JobSearch.Application.Repositories.OperatorCode;
-using JobSearch.Application.Repositories.OpportunityType;
-using JobSearch.Application.Repositories.Phone;
-using JobSearch.Application.Repositories.Salary;
-using JobSearch.Application.Repositories.Seniority;
-using JobSearch.Application.Repositories.Vacancy;
-using JobSearch.Infrastructure.Data;
-using JobSearch.Infrastructure.Repositories.Address;
-using JobSearch.Infrastructure.Repositories.Category;
-using JobSearch.Infrastructure.Repositories.City;
-using JobSearch.Infrastructure.Repositories.Company;
-using JobSearch.Infrastructure.Repositories.Currency;
-using JobSearch.Infrastructure.Repositories.Favorite;
-using JobSearch.Infrastructure.Repositories.JobType;
-using JobSearch.Infrastructure.Repositories.Operator;
-using JobSearch.Infrastructure.Repositories.OperatorCode;
-using JobSearch.Infrastructure.Repositories.OpportunityType;
-using JobSearch.Infrastructure.Repositories.Phone;
-using JobSearch.Infrastructure.Repositories.Salary;
-using JobSearch.Infrastructure.Repositories.Seniority;
-using JobSearch.Infrastructure.Repositories.Vacancy;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 
 namespace JobSearch.Infrastructure.Repositories
 {

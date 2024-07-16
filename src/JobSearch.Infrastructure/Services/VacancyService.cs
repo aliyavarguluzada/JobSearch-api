@@ -71,7 +71,8 @@ namespace JobSearch.Infrastructure.Services
                 if (vacancies is null)
                     return new List<GetVacancyDto>();
 
-                var dto = await vacancies.Select(c => new GetVacancyDto()
+                var dto = await vacancies.AsNoTracking()
+                .Select(c => new GetVacancyDto()
                 {
                     VacancyId = c.Id,
                     Name = c.Name,
@@ -97,8 +98,11 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                _unitOfWork.Dispose();
                 return new List<GetVacancyDto>();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
             }
         }
 
@@ -109,7 +113,7 @@ namespace JobSearch.Infrastructure.Services
                 if (id == 0)
                     return new GetVacancyDto();
 
-                var vacancy = await _unitOfWork.VacanciesRead.GetByIdAsync(id);
+                var vacancy = await _unitOfWork.VacanciesRead.GetByIdAsync(id, false);
 
                 if (vacancy is null)
                     return new GetVacancyDto();
@@ -136,8 +140,11 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
                 return new GetVacancyDto();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
             }
         }
     }
