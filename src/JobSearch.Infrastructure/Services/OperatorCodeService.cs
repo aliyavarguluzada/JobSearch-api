@@ -12,6 +12,8 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateOperatorCodeResponse>> Add(OperatorCodeRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             try
             {
                 if (string.IsNullOrEmpty(request.Code)
@@ -29,14 +31,20 @@ namespace JobSearch.Infrastructure.Services
                 var response = new CreateOperatorCodeResponse() { Code = request.Code };
 
                 await _unitOfWork.OperatorCodesWrite.Table.AddAsync(opCode);
+                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.OperatorCodesWrite.Complete();
 
                 return ApiResult<CreateOperatorCodeResponse>.Ok(response);
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateOperatorCodeResponse>.Error();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
+
             }
         }
     }

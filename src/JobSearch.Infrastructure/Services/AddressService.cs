@@ -11,6 +11,7 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateAddressResponse>> Add(AddressRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
 
             try
             {
@@ -33,14 +34,19 @@ namespace JobSearch.Infrastructure.Services
                 };
 
                 await _unitOfWork.AddressesWrite.Table.AddAsync(address);
+                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.AddressesWrite.Complete();
 
                 return ApiResult<CreateAddressResponse>.Ok(response);
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateAddressResponse>.Error();
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
         }
     }

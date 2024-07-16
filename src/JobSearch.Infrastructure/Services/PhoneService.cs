@@ -12,6 +12,8 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreatePhoneResponse>> Add(PhoneRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             try
             {
                 if (string.IsNullOrEmpty(request.Number))
@@ -27,6 +29,7 @@ namespace JobSearch.Infrastructure.Services
                 var response = new CreatePhoneResponse() { Number = phone.Number };
 
                 await _unitOfWork.PhonesWrite.Table.AddAsync(phone);
+                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.PhonesWrite.Complete();
 
 
@@ -34,9 +37,13 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreatePhoneResponse>.Error();
-            };
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateVacancyResponse>> Add(VacancyRequest request)
         {
-
+            await _unitOfWork.BeginTransactionAsync();
             try
             {
                 if (string.IsNullOrEmpty(request.Name))
@@ -45,14 +45,20 @@ namespace JobSearch.Infrastructure.Services
 
                 await _unitOfWork.VacanciesWrite.Table.AddAsync(vacancy);
                 await _unitOfWork.VacanciesWrite.Complete();
+                await _unitOfWork.CommitTransactionAsync();
+
 
 
                 return ApiResult<CreateVacancyResponse>.Ok(response);
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateVacancyResponse>.Error();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
             }
         }
 

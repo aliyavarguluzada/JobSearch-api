@@ -8,10 +8,11 @@ namespace JobSearch.Infrastructure.Services
     public class CityService : BaseService, ICityService
     {
         public CityService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
-        
+
 
         public async Task<ApiResult<CreateCityResponse>> Add(CityRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
 
             try
             {
@@ -24,6 +25,7 @@ namespace JobSearch.Infrastructure.Services
                 var response = new CreateCityResponse() { Name = city.Name };
 
                 await _unitOfWork.CitiesWrite.Table.AddAsync(city);
+                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.CitiesWrite.Complete();
 
 
@@ -31,8 +33,12 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateCityResponse>.Error();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
             }
         }
     }

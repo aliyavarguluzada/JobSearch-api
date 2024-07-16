@@ -34,7 +34,11 @@ namespace JobSearch.Application.Repositories
         IVacancyReadRepository VacanciesRead { get; }
         IFavoriteWriteRepository FavoritesWrite { get; }
         IFavoriteReadRepository FavoritesRead { get; }
-
+       
+        
+        Task BeginTransactionAsync();
+        Task CommitTransactionAsync();
+        Task RollbackTransactionAsync();
         Task DisposeAsync();
     }
 

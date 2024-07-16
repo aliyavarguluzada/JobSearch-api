@@ -12,6 +12,8 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateCompanyResponse>> Add(CompanyRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             try
             {
                 if (string.IsNullOrEmpty(request.Name)
@@ -28,6 +30,7 @@ namespace JobSearch.Infrastructure.Services
                     Email = request.Email,
                     About = request.About
                 };
+
                 var response = new CreateCompanyResponse()
                 {
                     Email = company.Email,
@@ -36,6 +39,7 @@ namespace JobSearch.Infrastructure.Services
                 };
 
                 await _unitOfWork.CompaniesWrite.Table.AddAsync(company);
+                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.CompaniesWrite.Complete();
 
 
@@ -43,8 +47,12 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateCompanyResponse>.Error();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
             }
         }
     }

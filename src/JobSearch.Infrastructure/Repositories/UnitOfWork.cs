@@ -28,12 +28,14 @@ using JobSearch.Infrastructure.Repositories.Phone;
 using JobSearch.Infrastructure.Repositories.Salary;
 using JobSearch.Infrastructure.Repositories.Seniority;
 using JobSearch.Infrastructure.Repositories.Vacancy;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace JobSearch.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
+        private IDbContextTransaction _currentTransaction;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -76,11 +78,55 @@ namespace JobSearch.Infrastructure.Repositories
 
         public IFavoriteReadRepository FavoritesRead { get; private set; }
 
-        public async Task Complete() => await _context.SaveChangesAsync();
+        public async Task CompleteAsync() => await _context.SaveChangesAsync();
         public async Task SaveAsync() => await _context.SaveChangesAsync();
         public async Task DisposeAsync() => await _context.DisposeAsync();
         public void Dispose() => _context.Dispose();
 
+        public async Task BeginTransactionAsync()
+        {
+            if (_currentTransaction == null)
+            {
+                _currentTransaction = await _context.Database.BeginTransactionAsync();
+            }
+        }
 
+        public async Task CommitTransactionAsync()
+        {
+            try
+            {
+                await CompleteAsync();
+                _currentTransaction?.Commit();
+            }
+            catch
+            {
+                await RollbackTransactionAsync();
+                throw;
+            }
+            finally
+            {
+                if (_currentTransaction != null)
+                {
+                    _currentTransaction.Dispose();
+                    _currentTransaction = null;
+                }
+            }
+        }
+
+        public async Task RollbackTransactionAsync()
+        {
+            try
+            {
+                await _currentTransaction?.RollbackAsync();
+            }
+            finally
+            {
+                if (_currentTransaction != null)
+                {
+                    _currentTransaction.Dispose();
+                    _currentTransaction = null;
+                }
+            }
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateFavoriteResponse>> Add(FavoriteRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             try
             {
                 var favorite = new Favorite()
@@ -25,7 +27,8 @@ namespace JobSearch.Infrastructure.Services
                 };
 
                 await _unitOfWork.FavoritesWrite.AddAsync(favorite);
-                await _unitOfWork.FavoritesWrite.SaveAsync();
+                await _unitOfWork.CommitTransactionAsync();
+                await _unitOfWork.FavoritesWrite.Complete();
 
                 var response = new CreateFavoriteResponse()
                 {
@@ -41,14 +44,20 @@ namespace JobSearch.Infrastructure.Services
                 await _unitOfWork.DisposeAsync();
                 return ApiResult<CreateFavoriteResponse>.Error();
             }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
+            }
         }
 
         public async Task<List<GetFavoriteDto>> GetAll(PaginationModel model)
         {
+
             try
             {
                 var favorites = await _unitOfWork.FavoritesRead.Table
                     .Include(c => c.Vacancy)
+                    .AsNoTracking()
                     .Select(c => new GetFavoriteDto
                     {
                         VacancyName = c.Vacancy.Name,
@@ -63,8 +72,11 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
                 return new List<GetFavoriteDto>();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
             }
         }
 
@@ -73,6 +85,7 @@ namespace JobSearch.Infrastructure.Services
             try
             {
                 var fav = await _unitOfWork.FavoritesRead.Table
+               .AsNoTracking()
                .Where(c => c.Id == id)
                .Include(c => c.Vacancy)
                .FirstOrDefaultAsync();
@@ -88,8 +101,12 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
                 return new GetFavoriteDto();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
+
             }
 
 

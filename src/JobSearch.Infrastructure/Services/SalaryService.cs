@@ -13,6 +13,7 @@ namespace JobSearch.Infrastructure.Services
         public async Task<ApiResult<CreateSalaryResponse>> Add(SalaryRequest request)
         {
 
+            await _unitOfWork.BeginTransactionAsync();
             try
             {
                 if (string.IsNullOrEmpty(request.Value)
@@ -31,14 +32,21 @@ namespace JobSearch.Infrastructure.Services
 
                 await _unitOfWork.SalariesWrite.Table.AddAsync(salary);
                 await _unitOfWork.SalariesWrite.Complete();
+                await _unitOfWork.CommitTransactionAsync();
 
                 return ApiResult<CreateSalaryResponse>.Ok(response);
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateSalaryResponse>.Error();
+            }
+            finally
+            {
+
+                await _unitOfWork.DisposeAsync();
             }
         }
     }
 }
+

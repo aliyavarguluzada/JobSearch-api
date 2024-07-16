@@ -12,6 +12,8 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateOperatorResponse>> Add(OperatorRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             try
             {
                 if (string.IsNullOrEmpty(request.Name))
@@ -26,6 +28,7 @@ namespace JobSearch.Infrastructure.Services
                 var response = new CreateOperatorResponse() { Name = @operator.Name };
 
                 await _unitOfWork.OperatorsWrite.Table.AddAsync(@operator);
+                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.OperatorsWrite.Complete();
 
 
@@ -33,8 +36,12 @@ namespace JobSearch.Infrastructure.Services
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateOperatorResponse>.Error();
+            }
+            finally
+            {
+                await _unitOfWork.DisposeAsync();
             }
         }
     }

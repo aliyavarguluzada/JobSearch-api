@@ -12,6 +12,8 @@ namespace JobSearch.Infrastructure.Services
 
         public async Task<ApiResult<CreateCategoryResponse>> Add(CategoryRequest request)
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             try
             {
                 if (string.IsNullOrEmpty(request.Name))
@@ -23,15 +25,22 @@ namespace JobSearch.Infrastructure.Services
                 var response = new CreateCategoryResponse() { Name = category.Name };
 
                 await _unitOfWork.CategoriesWrite.Table.AddAsync(category);
+                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.CategoriesWrite.Complete();
 
                 return ApiResult<CreateCategoryResponse>.Ok(response);
             }
             catch (Exception)
             {
-                await _unitOfWork.DisposeAsync();
+                await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateCategoryResponse>.Error();
+            }
+            finally
+            {
+
+                await _unitOfWork.DisposeAsync();
             }
         }
     }
 }
+
