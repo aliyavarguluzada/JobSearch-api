@@ -1,5 +1,4 @@
 ﻿using JobSearch.Application.Interfaces;
-using JobSearch.Application.Repositories;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Pagination;
 using JobSearch.Models.v1.Vacancy;
@@ -66,12 +65,12 @@ namespace JobSearch.Infrastructure.Services
         {
             try
             {
-                var vacancies = _unitOfWork.VacanciesRead.GetAll();
+                var vacancies = _unitOfWork.VacanciesRead.GetAll(false);
 
                 if (vacancies is null)
                     return new List<GetVacancyDto>();
 
-                var dto = await vacancies.AsNoTracking()
+                var dto = await vacancies
                 .Select(c => new GetVacancyDto()
                 {
                     VacancyId = c.Id,

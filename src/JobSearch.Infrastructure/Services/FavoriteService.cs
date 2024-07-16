@@ -1,5 +1,4 @@
 ﻿using JobSearch.Application.Interfaces;
-using JobSearch.Application.Repositories;
 using JobSearch.Application.Result;
 using JobSearch.Domain.Entities;
 using JobSearch.Models.v1.Favorite;
@@ -84,19 +83,16 @@ namespace JobSearch.Infrastructure.Services
         {
             try
             {
-                var fav = await _unitOfWork.FavoritesRead.Table
-               .AsNoTracking()
-               .Where(c => c.Id == id)
-               .Include(c => c.Vacancy)
-               .FirstOrDefaultAsync();
+                var favorite = await _unitOfWork.FavoritesRead.GetByIdAsync(id, false);
 
                 var dto = new GetFavoriteDto
                 {
-                    CookieId = fav.CookieId,
-                    Id = fav.Id,
-                    VacancyId = fav.VacancyId,
-                    VacancyName = fav.Vacancy.Name
+                    CookieId = favorite.CookieId,
+                    Id = favorite.Id,
+                    VacancyId = favorite.VacancyId,
+                    VacancyName = favorite.Vacancy.Name
                 };
+
                 return dto;
             }
             catch (Exception)
