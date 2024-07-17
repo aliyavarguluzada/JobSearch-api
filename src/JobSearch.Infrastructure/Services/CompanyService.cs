@@ -1,5 +1,4 @@
 ﻿using JobSearch.Application.Interfaces;
-using JobSearch.Application.Repositories;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Company;
 
@@ -49,10 +48,6 @@ namespace JobSearch.Infrastructure.Services
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateCompanyResponse>.Error();
-            }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
             }
         }
     }

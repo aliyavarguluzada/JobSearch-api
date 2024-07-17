@@ -3,12 +3,17 @@ using JobSearch.Application.Result;
 using JobSearch.Models.v1.Pagination;
 using JobSearch.Models.v1.Vacancy;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace JobSearch.Infrastructure.Services
 {
     public class VacancyService : BaseService, IVacancyService
     {
-        public VacancyService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        private readonly ILogger<VacancyService> _logger;
+        public VacancyService(IUnitOfWork unitOfWork, ILogger<VacancyService> logger) : base(unitOfWork)
+        {
+            _logger = logger;
+        }
 
 
         public async Task<ApiResult<CreateVacancyResponse>> Add(VacancyRequest request)
@@ -47,6 +52,7 @@ namespace JobSearch.Infrastructure.Services
                 await _unitOfWork.CommitTransactionAsync();
 
 
+                _logger.LogInformation("Added {vacancy},{response}", vacancy, response);
 
                 return ApiResult<CreateVacancyResponse>.Ok(response);
             }
@@ -88,9 +94,13 @@ namespace JobSearch.Infrastructure.Services
                     Website = c.Website
 
                 })
+                .OrderBy(c => c.VacancyId)
                 .Skip((model.PageNumber - 1) * model.PageSize)
                 .Take(model.PageSize)
                 .ToListAsync();
+
+
+                _logger.LogInformation("Added {dto}", dto);
 
                 return dto;
 
@@ -98,10 +108,6 @@ namespace JobSearch.Infrastructure.Services
             catch (Exception)
             {
                 return new List<GetVacancyDto>();
-            }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
             }
         }
 
@@ -133,6 +139,7 @@ namespace JobSearch.Infrastructure.Services
                     JobTypeId = vacancy.JobTypeId,
                     OpportunityTypeId = vacancy.OpportunityTypeId
                 };
+                _logger.LogInformation("Added {vacancyDto}", vacancyDto);
 
                 return vacancyDto;
 
@@ -140,10 +147,6 @@ namespace JobSearch.Infrastructure.Services
             catch (Exception)
             {
                 return new GetVacancyDto();
-            }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
             }
         }
     }

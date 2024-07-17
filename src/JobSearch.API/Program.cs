@@ -8,10 +8,19 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(
+        $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json",
+        optional: true)
+    .Build();
+
 builder.Logging.ClearProviders();
 
-
 builder.Logging.AddSerilog();
+
 builder.Host.UseSerilog((context, configuration) =>
               configuration.ReadFrom.Configuration(context.Configuration));
 
@@ -47,9 +56,6 @@ builder.Services.AddAntiforgery(options =>
     options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
     options.SuppressXFrameOptionsHeader = false;
 }); // should add antiforgery attribute to controllers
-
-
-
 
 
 

@@ -1,5 +1,4 @@
 ﻿using JobSearch.Application.Interfaces;
-using JobSearch.Application.Repositories;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Operator;
 
@@ -38,10 +37,6 @@ namespace JobSearch.Infrastructure.Services
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateOperatorResponse>.Error();
-            }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
             }
         }
     }

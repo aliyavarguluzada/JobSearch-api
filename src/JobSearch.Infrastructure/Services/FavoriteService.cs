@@ -43,10 +43,6 @@ namespace JobSearch.Infrastructure.Services
                 await _unitOfWork.DisposeAsync();
                 return ApiResult<CreateFavoriteResponse>.Error();
             }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
-            }
         }
 
         public async Task<List<GetFavoriteDto>> GetAll(PaginationModel model)
@@ -73,10 +69,6 @@ namespace JobSearch.Infrastructure.Services
             {
                 return new List<GetFavoriteDto>();
             }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
-            }
         }
 
         public async Task<GetFavoriteDto> GetById(int id)
@@ -85,12 +77,13 @@ namespace JobSearch.Infrastructure.Services
             {
                 var favorite = await _unitOfWork.FavoritesRead.GetByIdAsync(id, false);
 
-                var dto = new GetFavoriteDto
+
+
+                var dto = new GetFavoriteDto()
                 {
                     CookieId = favorite.CookieId,
-                    Id = favorite.Id,
+                    Id = id,
                     VacancyId = favorite.VacancyId,
-                    VacancyName = favorite.Vacancy.Name
                 };
 
                 return dto;
@@ -99,13 +92,6 @@ namespace JobSearch.Infrastructure.Services
             {
                 return new GetFavoriteDto();
             }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
-
-            }
-
-
         }
     }
 }

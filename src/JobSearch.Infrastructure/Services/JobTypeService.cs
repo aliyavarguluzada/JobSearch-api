@@ -36,10 +36,6 @@ namespace JobSearch.Infrastructure.Services
                 await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateJobTypeResponse>.Error();
             }
-            finally
-            {
-                await _unitOfWork.DisposeAsync();
-            }
         }
     }
 }

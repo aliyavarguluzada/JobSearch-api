@@ -1,5 +1,4 @@
 ﻿using JobSearch.Application.Interfaces;
-using JobSearch.Application.Repositories;
 using JobSearch.Application.Result;
 using JobSearch.Models.v1.Address;
 
@@ -43,10 +42,6 @@ namespace JobSearch.Infrastructure.Services
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 return ApiResult<CreateAddressResponse>.Error();
-            }
-            finally
-            {
-                _unitOfWork.Dispose();
             }
         }
     }
