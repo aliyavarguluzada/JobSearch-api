@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class SeniorityService : BaseService, ISeniorityService
     {
-        public SeniorityService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public SeniorityService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateSeniorityResponse>> Add(SeniorityRequest request)

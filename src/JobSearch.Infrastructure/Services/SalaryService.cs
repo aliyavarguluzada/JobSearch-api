@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class SalaryService : BaseService, ISalaryService
     {
-        public SalaryService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public SalaryService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateSalaryResponse>> Add(SalaryRequest request)

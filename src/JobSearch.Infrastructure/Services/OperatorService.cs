@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class OperatorService : BaseService, IOperatorService
     {
-        public OperatorService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public OperatorService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateOperatorResponse>> Add(OperatorRequest request)

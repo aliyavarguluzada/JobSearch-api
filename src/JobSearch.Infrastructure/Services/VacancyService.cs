@@ -10,7 +10,8 @@ namespace JobSearch.Infrastructure.Services
     public class VacancyService : BaseService, IVacancyService
     {
         private readonly ILogger<VacancyService> _logger;
-        public VacancyService(IUnitOfWork unitOfWork, ILogger<VacancyService> logger) : base(unitOfWork)
+        public VacancyService(IUnitOfWork unitOfWork, ILogger<VacancyService> logger,
+            IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService)
         {
             _logger = logger;
         }

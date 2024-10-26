@@ -9,7 +9,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class FavoriteService : BaseService, IFavoriteService
     {
-        public FavoriteService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public FavoriteService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateFavoriteResponse>> Add(FavoriteRequest request)

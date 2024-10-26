@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class CurrencyService : BaseService, ICurrencyService
     {
-        public CurrencyService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public CurrencyService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateCurrencyResponse>> Add(CurrencyRequest request)

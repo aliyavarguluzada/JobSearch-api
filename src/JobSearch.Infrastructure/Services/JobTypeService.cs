@@ -7,7 +7,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class JobTypeService : BaseService, IJobTypeService
     {
-        public JobTypeService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public JobTypeService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateJobTypeResponse>> Add(JobTypeRequest request)

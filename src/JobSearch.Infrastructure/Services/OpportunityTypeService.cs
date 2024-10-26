@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class OpportunityTypeService : BaseService, IOpportunityTypeService
     {
-        public OpportunityTypeService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public OpportunityTypeService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateOpportunityTypeResponse>> Add(OpportunityTypeRequest request)

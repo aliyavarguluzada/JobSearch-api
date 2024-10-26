@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class CategoryService : BaseService, ICategoryService
     {
-        public CategoryService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public CategoryService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateCategoryResponse>> Add(CategoryRequest request)

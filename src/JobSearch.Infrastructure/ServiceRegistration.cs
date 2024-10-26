@@ -1,12 +1,8 @@
 ﻿using JobSearch.Application.Interfaces;
-using JobSearch.Infrastructure.Data;
 using JobSearch.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
-using Serilog.Sinks.Elasticsearch;
-using System.Reflection;
 
 namespace JobSearch.Infrastructure
 {
@@ -57,6 +53,7 @@ namespace JobSearch.Infrastructure
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IVacancyService, VacancyService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
+            services.AddScoped<IMessageProducerService, MessageProducerService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration["Database:Connection"]));

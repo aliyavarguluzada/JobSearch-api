@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class CityService : BaseService, ICityService
     {
-        public CityService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public CityService(IUnitOfWork unitOfWork,IMessageProducerService messageProducerService) : base(unitOfWork,messageProducerService) { }
 
 
         public async Task<ApiResult<CreateCityResponse>> Add(CityRequest request)

@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class PhoneService : BaseService, IPhoneService
     {
-        public PhoneService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public PhoneService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreatePhoneResponse>> Add(PhoneRequest request)

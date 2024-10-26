@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class AddressService : BaseService, IAddressService
     {
-        public AddressService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public AddressService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
         public async Task<ApiResult<CreateAddressResponse>> Add(AddressRequest request)
         {
@@ -16,7 +16,6 @@ namespace JobSearch.Infrastructure.Services
             {
                 if (string.IsNullOrEmpty(request.Address))
                     return ApiResult<CreateAddressResponse>.Error();
-
 
                 var address = new JobSearch.Domain.Entities.Address()
                 {
@@ -32,9 +31,13 @@ namespace JobSearch.Infrastructure.Services
                     Street = request.Street
                 };
 
+                // Save address to database in this transaction
                 await _unitOfWork.AddressesWrite.Table.AddAsync(address);
-                await _unitOfWork.CommitTransactionAsync();
                 await _unitOfWork.AddressesWrite.Complete();
+                await _unitOfWork.CommitTransactionAsync();
+
+                // Publish the message to RabbitMQ for further processing
+                await _messageProducerService.PublishAsync("addressQueue", address.ToString());
 
                 return ApiResult<CreateAddressResponse>.Ok(response);
             }
@@ -44,5 +47,7 @@ namespace JobSearch.Infrastructure.Services
                 return ApiResult<CreateAddressResponse>.Error();
             }
         }
+
     }
 }
+

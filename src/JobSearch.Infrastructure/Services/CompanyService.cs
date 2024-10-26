@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Services
 {
     public class CompanyService : BaseService, ICompanyService
     {
-        public CompanyService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public CompanyService(IUnitOfWork unitOfWork, IMessageProducerService messageProducerService) : base(unitOfWork, messageProducerService) { }
 
 
         public async Task<ApiResult<CreateCompanyResponse>> Add(CompanyRequest request)
